@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function App() {
+function Cal() {
 	const [calc, setCalc] = useState("");
 	const[result, setResult] = useState("");
 
@@ -41,18 +41,26 @@ function App() {
 
 	const deleteLast = () => {
      if(calc == '') {
+        setResult("0");
      return;
 	}
 
 	const value = calc.slice(0, -1);
 
 	setCalc(value);
+    setResult(value);
+    
 }
+const clrLast = () => {
+	   setCalc("");
+	   setResult("");
+	return;
+   }
 	return (
 		<div className="App">
 			<div className="calculator">
 			<div className="display">
-				{result ? <span>({result})</span> : '' }
+				{result ? <span>({result })</span> : <span>({"0"})</span> }
 				&nbsp;
 				{ calc || "0"}
 				</div>
@@ -64,6 +72,7 @@ function App() {
 					<button onClick={() => updateCalc('-')}>-</button>
 
 					<button onClick={deleteLast}>DEL</button>
+					<button onClick={clrLast}>CLR</button>
 					</div>
 
 					<div className="digits">
@@ -80,4 +89,4 @@ function App() {
 	);
 }
 
-export default App;
+export default Cal;
